@@ -1,6 +1,14 @@
 # deluxify
 a spicetify-cli theme: https://github.com/khanhas/spicetify-cli
 
+## features
+
+- dynamic colors depending on cover art (sends json request with every song change)
+- spotify title at the top that also changes color dynamicly
+- fullscreen view has background of blurred cover art
+- dark theme
+- changable background (does require a little bit of css knowledge)
+
 ## origin
 
 Theme is an edited version of the original spicetify theme with an added extension to add multiple layers of effects etc.
