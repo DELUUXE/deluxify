@@ -17,6 +17,10 @@ Theme is an edited version of the original spicetify theme with an added extensi
 3. copy the deluxify folder in Theme to the Themes folder from spicetify-cli
 4. copy the extension from its folder to the Extensions folder from spicetify-cli
 
+## change background image
+
+edit [line 929](https://github.com/DELUUXE/deluxify/blob/master/Theme/deluxify/user.css#L929) in your local copy
+
 ## screenshots
 
 ### playlist view
