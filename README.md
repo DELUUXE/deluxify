@@ -19,7 +19,7 @@ Theme is an edited version of the original spicetify theme with an added extensi
 
 ## change background image
 
-edit [line 929](https://github.com/DELUUXE/deluxify/blob/master/Theme/deluxify/user.css#L929) in your local copy
+edit [line 903](https://github.com/DELUUXE/deluxify/blob/master/Theme/deluxify/user.css#L903) in your local copy
 
 ## screenshots
 
