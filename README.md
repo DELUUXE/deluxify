@@ -8,4 +8,4 @@ Theme is an edited version of the original spicetify theme with an added extensi
 ## important spotify settings (before installing)
 
 - current song image must be docked in the bottom bar
-- friends list must be turned off
+- turn off friends activity in spotify settings
