@@ -7,7 +7,7 @@ a spicetify-cli theme: https://github.com/khanhas/spicetify-cli
 - spotify title at the top that also changes color dynamicly
 - fullscreen view has background of blurred cover art
 - dark theme
-- changable background (does require a little bit of css knowledge)
+- changeable background (does require a little bit of css knowledge)
 
 ## origin
 
