@@ -1,0 +1,976 @@
+/*
+	ATTENTION
+
+	to make this theme work best, change the following settings:
+
+	* turn off friends activity in spotify settings
+	* current song image must be docked in the bottom bar (before installing theme)
+*/
+
+
+@font-face {
+	font-family: 'slasher';
+	src: url('https://www.dropbox.com/s/nj8b7gcifaq1ieh/SlasherX-Bold.otf?dl=1');
+}
+
+:root {
+	--modspotify_main_bg: #070707 !important;
+	--modspotify_sidebar_and_player_bg: #070707 !important;
+	--cover-border-radius: 8px;
+	--section-border-radius: 8px;
+	/* --modspotify_sidebar_indicator_and_hover_button_bg: #00adff; */
+}
+
+/*Round corner cover image*/
+.card-image,
+.card-placeholder-wrapper,
+.card-image-content-wrapper,
+.GlueCard:not(.GlueCard--artist) .GlueCard__image,
+.GlueCard:not(.GlueCard--artist) .GlueCard__image-wrapper,
+.Card:not(.Card--artist) .Card__image,
+.Card:not(.Card--artist) .Card__image-wrapper {
+	/* border-radius: 10px !important; */
+	overflow: hidden !important
+}
+
+/*Hide some annoying elements like profile name and pic, upgrade button and device connect bar at bottom, new playlist button*/
+
+.upgrade-button,
+.view-player .remote-playback-bar,
+.NewPlaylistButton {
+	display: none !important;
+}
+
+.profile.content-top-bar__profile-link{
+	margin-right: 347px !important;
+	margin-top: 21px !important;
+	color: white;
+}
+
+body.messagebar .profile.content-top-bar__profile-link {
+	margin-right: 456px !important;
+	color: white;
+    margin-top: 17px !important;
+}
+
+/*Force player bar to has fixed height*/
+body.remotebar .view-player .player-bar-wrapper {
+	height: 87px !important;
+	/* background: black !important; */
+}
+
+/*Exclude these elements from draggable property because it stops them from clickable*/
+.profile-items-container,
+.profile
+ {
+	-webkit-app-region: no-drag !important;
+}
+
+/*Thinner scrollbar*/
+::-webkit-scrollbar {
+	height: 6px !important;
+	width: 6px !important;
+	background-color: transparent;
+}
+
+/*Round corner scrollbar*/
+::-webkit-scrollbar-thumb {
+	border-radius: 3px !important;
+}
+
+/*Hide top and bottom buttons of scrollbar */
+/*who uses those, lol*/
+::-webkit-scrollbar-button {
+	display: none !important;
+}
+
+/*Hide cover image overlay*/
+.card-overlay {
+	visibility: hidden !important;
+}
+
+/*Lift up cover when hovering on it*/
+.card-image-content-wrapper,
+.GlueCard__image-wrapper,
+.Card:not(.Card--artist) .Card__image-wrapper {
+	transition-property: transform box-shadow !important;
+	transition-duration: 1s !important;
+	transition-timing-function: cubic-bezier(.3,0,0,1) !important;
+	box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.card-image-hit-area:not(.no-hover):hover .card-image-content-wrapper,
+.GlueCard__image-hit-area-counter-scale:hover .GlueCard__image-wrapper,
+.Card:not(.Card--artist) .Card__image-hit-area-counter-scale:hover .Card__image-wrapper {
+	transform: translateY(-10px);
+	box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.card-image-hit-area .card-button-add,
+.card-image-hit-area .card-button-play,
+.card-image-hit-area .card-button-more,
+.GlueCard__image-hit-area .card-button-add,
+.GlueCard__image-hit-area .card-button-play,
+.GlueCard__image-hit-area .card-button-more,
+.GlueCard__image-hit-area .GlueCard__play-button,
+.GlueCard__image-hit-area .GlueCard__add-button,
+.GlueCard__image-hit-area .GlueCard__more-button,
+.GlueCard__image-hit-area .GlueCard__overlay,
+.Card__image-hit-area .card-button-add,
+.Card__image-hit-area .card-button-play,
+.Card__image-hit-area .card-button-more,
+.Card__image-hit-area .Card__play-button,
+.Card__image-hit-area .Card__add-button,
+.Card__image-hit-area .Card__more-button,
+.Card__image-hit-area .Card__overlay  {
+	transition-property: all !important;
+	transition-duration: 1s !important;
+	transition-timing-function: cubic-bezier(.3,0,0,1) !important;
+	opacity: 0 !important;
+}
+.card-image-hit-area:not(.no-hover):hover .card-button-add,
+.card-image-hit-area:not(.no-hover):hover .card-button-play,
+.card-image-hit-area:not(.no-hover):hover .card-button-more,
+.GlueCard__image-hit-area:not(.no-hover):hover .card-button-add,
+.GlueCard__image-hit-area:not(.no-hover):hover .card-button-play,
+.GlueCard__image-hit-area:not(.no-hover):hover .card-button-more,
+.Card__image-hit-area:not(.no-hover):hover .card-button-add,
+.Card__image-hit-area:not(.no-hover):hover .card-button-play,
+.Card__image-hit-area:not(.no-hover):hover .card-button-more {
+	opacity: 1 !important;
+	transform: translateY(-10px);
+}
+
+.GlueCard__image-hit-area:hover .GlueCard__play-button,
+.GlueCard__image-hit-area:hover .GlueCard__add-button,
+.GlueCard__image-hit-area:hover .GlueCard__more-button,
+.GlueCard__image-hit-area:hover .GlueCard__overlay,
+.Card__image-hit-area:hover .Card__play-button,
+.Card__image-hit-area:hover .Card__add-button,
+.Card__image-hit-area:hover .Card__more-button,
+.Card__image-hit-area:hover .Card__overlay {
+	opacity: 1 !important;
+}
+
+.card-placeholder-wrapper {
+	background: transparent !important;
+}
+
+/*Spice up search input background*/
+.SearchInput__input {
+	color: var(--modspotify_secondary_fg);
+	background-color: rgba(var(--modspotify_rgb_scrollbar_fg_and_selected_row_bg), 0.5) !important;
+}
+
+/*Fixed player bar height and add cool shadow under*/
+.view-player {
+	height: 87px !important;
+	/* box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5) !important; */
+}
+
+/*make player black*/
+.player-bar-wrapper {
+	/*background: black !important;*/
+	transition-duration: 1000ms !important;
+}
+
+.scroll-text-container:after {
+	display: none;
+}
+
+
+/*
+Make cover image in player bar bigger and change position it abit
+Also padding tilte and artist to correct position
+*/
+.view-player .now-playing,
+.view-player .now-playing-container,
+.view-player .now-playing .cover-image-container {
+	height: 100% !important;
+	overflow: visible !important;
+}
+
+.view-player .now-playing .cover-image-container {
+	position: absolute !important;
+	overflow: visible !important;
+	bottom: 320px !important;
+	left: 43px !important;
+}
+.view-player .now-playing .cover-image-container .cover-image {
+	width:301px !important;
+	height: 300px !important;
+	position: absolute !important;
+	box-shadow: none !important;
+	background-size: cover !important;
+	margin-left: 16px !important;
+    margin-top: 17px !important;
+}
+
+@media (max-height: 764px){
+	.view-player .now-playing .cover-image-container .cover-image {
+		bottom: -249px;
+		left: 4px;
+	}
+}
+
+.cover-image-container{
+	pointer-events: none !important;
+}
+
+.view-player .now-playing .cover-image-link figure {
+    height: 330px !important;
+    width: 334px;
+    margin-left: -16px;
+    margin-bottom: -260px;
+}
+
+.view-player .now-playing-container .caption {
+	height: 100% !important;
+	align-content: center !important;
+	width: 40vw !important;
+	padding-left: 0px !important;
+	margin-left: -60px !important;
+}
+
+@media (min-width: 1200px){
+	.view-player .now-playing-container {
+		min-width: 500px;
+	}
+}
+
+.view-player .now-playing-container {
+	z-index: 9998 !important;
+}
+
+/*move offline bar up*/
+
+#view-offline-indicator {
+	position: fixed;
+    bottom: 391px;
+    left: 0px;
+    width: 299.5px;
+	text-align: center;
+}
+
+#view-offline-indicator span {
+	text-transform: uppercase;
+	color: white;
+	font-size: 1.2em;
+}
+
+.sidebar .sidebar-navbar.sidebar-scroll-element {
+	/* padding-top: 30px !important;
+	padding-bottom: 60px !important;
+	opacity: 0 !important;
+	transition-property: opacity !important;
+	transition-duration: .5s !important;
+	transition-timing-function: cubic-bezier(.3,0,0,1) !important; */
+	margin-top: -50px !important;
+	padding-top: 50px !important;
+	margin-bottom: 339px !important;
+	width: 306px !important;
+	background-color: /*rgb(48, 48, 48)*/ #181818 !important;
+	/* box-shadow: 0px 0px 7px 0px black; */
+}
+
+.sidebar .sidebar-navbar {
+	margin-bottom: 282px !important;
+	padding-top: 0px !important;
+}
+
+.sidebar .LeftSidebar .LeftSidebar__section .SidebarList .SidebarList__list {
+	display: flex !important;
+    width: 100% !important;
+    justify-content: space-evenly !important;
+}
+
+.sidebar .LeftSidebar .LeftSidebar__section .SidebarList .SidebarList__list .SidebarListItem {
+	padding: 0px !important;
+    margin: 0px !important;
+    padding-left: 5px !important;
+	padding-right: 5px !important;
+}
+
+.sidebar .LeftSidebar .LeftSidebar__section {
+	margin-bottom: 0px !important;
+}
+
+.sidebar .LeftSidebar .LeftSidebar__scroll-section .LeftSidebar__section {
+	margin-bottom: 24px !important;
+}
+
+.sidebar .LeftSidebar .LeftSidebar__scroll-section .LeftSidebar__section .SidebarList .SidebarList__list {
+	display: initial !important;
+    width: initial !important;
+    justify-content: initial !important;
+}
+
+.sidebar .LeftSidebar .LeftSidebar__scroll-section .LeftSidebar__section .SidebarList .SidebarList__list .SidebarListItem {
+	padding: initial !important;
+    margin: initial !important;
+	padding-left: 23px !important;
+}
+
+/* cover image placeholder */
+#cover-image-placeholder {
+	position: fixed;
+    background: black;
+    height: 300px !important;
+    width: 300px !important;
+    bottom: 90px !important;
+    left: 0px !important;
+    /* z-index: 9; */
+}
+
+#menu-wrapper {
+	width: 300px !important;
+}
+#view-resize-nav {
+	display: none;
+}
+
+/* Playlist content */
+[dir] .playlist-extender-content {
+	margin: 0px !important;
+}
+#playlist-extender {
+	height: 0px;
+}
+
+.sidebar:hover .sidebar-navbar.sidebar-scroll-element {
+	opacity: 1!important;
+}
+
+.view-player .player-controls-container,
+.view-player .player-controls-container .controls {
+	overflow: visible !important;
+}
+
+.view-player .player-controls-container .controls .button-play{
+	height:50px !important;
+	border-radius:50px !important;
+	background: transparent !important;
+	box-shadow:0 0 0 0 !important;
+	width:50px !important;
+	overflow: visible !important;
+	border: none !important;
+	/* box-shadow: 0 5px 15px rgba(0,0,0,0.7) !important; */
+	transition:none 0.3s cubic-bezier(.3,0,.7,1);
+}
+
+.view-player .player-controls-container .controls .button-play:before{
+	font-size:18px !important;
+	padding-left: 16px !important;
+	padding-top: 9px !important;
+}
+
+
+.view-player .player-controls-container {
+	position: absolute !important;
+	width: 100% !important;
+}
+
+.view-player .player-controls-container .controls {
+	width: 100% !important;
+	height: 100%  !important;
+	align-items: center !important;
+	margin-top : 0px !important;
+}
+
+/*
+re position elapsed and remaining time
+*/
+.view-player .player-controls-container .progress-container .elapsed {
+	position: fixed;
+	right: 305px;
+	bottom: 38px;
+	font-size: 1.1em;
+	opacity: 0.8;
+}
+.view-player .player-controls-container .progress-container .elapsed::after {
+	position: fixed;
+	right: 305px;
+	bottom: 38.5px;
+	font-size: 1.2em;
+	content: "/";
+}
+.view-player .player-controls-container .progress-container .remaining {
+	/* display: none !important; */
+	position: fixed;
+	right: 265px;
+	bottom: 38px;
+	font-size: 1.1em;
+	opacity: 0.9;
+}
+
+/*
+Move progress bar
+*/
+.view-player .player-controls-container .progress-container {
+	position: absolute !important;
+	width: 100% !important;
+	height: 10px !important;
+    bottom: 75px !important;
+	left: 0px !important;
+	border-radius: 0px !important;
+	margin : 0 0 0 0 !important;
+	z-index: 9999 !important;
+}
+
+.view-player .player-controls-container .progress-container .progress-bar {
+	margin-top: -6px !important;
+	top: 100% !important;
+	border-radius: 0px !important;
+	transition-duration: 1000ms !important;
+}
+
+.view-player .player-controls-container .progress-container .progress-bar .inner {
+	top: 100% !important;
+	margin-top: -4px !important;
+	border-radius: 0px !important;
+	background-color: var(--modspotify_main_fg);
+	/* transition-duration: 1000ms !important; */
+	/* mix-blend-mode: color-burn; */
+}
+
+/* Add round corner for Gerne and Mood cards */
+.gc-image-container,
+.gc-image,
+.Card__image,
+.Card__image-hit-area{
+	border-radius: 10px !important;
+}
+
+/* change circle to square from user and artist pictures */
+.card-image,
+.glue-page-header .card-type-user,
+.avatar {
+    -webkit-clip-path: none !important;
+	border-radius: 5px !important;
+}
+
+
+/*
+Collage of 3 album covers is usually seen in Browse and Chart.
+*/
+.card-puff__image-wrapper,
+.card-puff__info-container,
+.card-puff__card-image {
+	border-radius: 10px !important;
+}
+
+.card-puff__image-wrapper {
+  overflow: visible;
+}
+
+.card-puff__card-image {
+	box-shadow: 5px 0 30px rgba(0,0,0,0.7);
+	overflow: visible;
+}
+
+.card-puff__title-container {
+	background-color: rgba(0,0,0,0) !important;
+	align-items: start !important;
+}
+
+.card-puff.pressed .card-puff__image-wrapper,
+.card-puff.pressed .card-puff__info-container {
+  opacity: 0.7 !important;
+}
+
+.card-puff__title {
+	padding: 5px 10px 5px 10px !important;
+	background-color: rgba(var(--modspotify_rgb_cover_overlay_and_shadow),0.8) !important;
+	border-radius: 10px 10px 0 0 !important;
+	text-align: left !important;
+	width: 100% !important;
+	margin: 0 !important;
+}
+/*
+We use round corner on cover so they look weird in original
+form, so I move last cover to the right 20px and first one to the left 20px
+*/
+.card-puff__card-image:nth-child(1) {
+	right: 20px;
+	box-shadow: 0 0 0 0 !important;
+}
+
+.card-puff__card-image:nth-child(3) {
+	left: 20px;
+}
+
+.grid-overlay-label {
+	top: 140px !important;
+}
+
+/**/
+.glue-page-header__background-color {
+	background-image: none !important;
+	background: var(--modspotify_main_bg);
+}
+
+.glue-page-header__background-overlay {
+	background-color: transparent !important;
+}
+
+.glue-page-header__sticky {
+  	padding-top: 60px !important;
+}
+
+/*
+In top of Browse usually has bunch of Playlist or Album cards,
+and they has .carousel as a wrapper and it hides anything that
+overflows from its zone, aka our shadow and lifting animation.
+*/
+.carousel {
+	overflow: visible !important;
+}
+
+/*
+Button with text Play
+*/
+.button.button-green,
+.GlueButton.GlueButton--style-green {
+	color: var(--modspotify_main_bg) !important;
+}
+
+.button,
+.Button::after,
+.Button,
+.button::after{
+	border-radius: 8px !important;
+	border: none !important;
+	/* background: transparent !important; */
+}
+/* edit main PLAY/PAUSE button */
+.view-player .button-play::after  {
+	/* border-radius: 500px !important; */
+	display: none;
+}
+#player-button-play,
+.view-player .button-play::before  {
+	/* border-radius: 500px !important; */
+	transform: scale(1.2) !important;
+	color: white;
+	transition-duration: 200ms;
+}
+#player-button-play:hover,
+.view-player .button-play:hover::before  {
+	/* border-radius: 500px !important; */
+	color: --modspotify_main_fg;
+}
+
+/*
+Change text color in playlist
+*/
+.tl-explicit .label,
+.tl-premium .label,
+.tl-cell:not(.tl-number),
+.tl-cell a:link,
+.tl-highlight {
+  color: var(--modspotify_secondary_fg);
+}
+
+.card-type-album .card-info-title,
+.card-type-track .card-info-title,
+.card-type-collection-album .card-info-title,
+.card-type-episode .card-info-title {
+  	font-size: 15px;
+  	font-weight: 900 !important;
+	text-align: center !important;
+	width: 100% !important;
+}
+
+.card-type-album .card-info-subtitle-links,
+.card-type-track .card-info-subtitle-links,
+.card-type-collection-album .card-info-subtitle-links,
+.card-type-episode .card-info-subtitle-links {
+	text-align: center !important;
+	width: 100% !important;
+}
+
+.tracklist-station-container::after {
+	background: transparent !important;
+}
+
+.GlueHeader__background-overlay {
+	background: var(--modspotify_main_bg) !important;
+}
+
+/* Move navigation buttons and search field to the right and down */
+.browser-navigation-top-bar {
+	margin-left: 40px !important;
+	margin-top: 15px !important;
+}
+
+.SearchInput__input,
+.SearchInput__searchIcon,
+.SearchInput__clearButton {
+	margin-top: 15px !important;
+}
+
+.SearchInput__clearButton {
+    margin-right: -96px;
+}
+
+.content-top-bar__profile-menu-button {
+	margin-top: 15px !important;
+}
+
+.body-container--windows:not(.with-buddy-list):not(.messagebar) .content-top-bar__profile {
+	margin-right: 110px !important;
+	margin-top: -5px;
+}
+
+/* Spice up Fullscreen mode */
+#view-player .album-art .album-art__image {
+	border-radius: 30px !important;
+	box-shadow: 0 10px 70px rgba(var(--modspotify_rgb_cover_overlay_and_shadow),.5) !important;
+}
+
+#view-player .album-art .album-art__image .card-image-content-wrapper,
+#view-player .album-art .album-art__image .card-image-content-wrapper .card-image {
+	border-radius: 30px !important;
+}
+
+/* Daily mixes */
+.carousel .card-info-wrapper.card-info-with-description.card-info-with-metadata {
+	height: 50px !important;
+}
+
+/* Remove section divider */
+.section-divider {
+	border-bottom: 0 !important;
+}
+
+/* Adjust Position of border active tab in Nav bar at top
+and add little glowing effect
+*/
+.nav.navbar-nav {
+	overflow: hidden !important;
+}
+
+.nav.navbar-nav a {
+	overflow: visible !important;
+}
+
+.nav.navbar-nav a::after {
+	bottom: 0px !important;
+	width: 100% !important;
+}
+
+.nav.navbar-nav .active  a::after{
+	box-shadow: 0 0px 20px !important;
+}
+
+.nav.navbar-nav a:focus:not(.button):active::after{
+	background-color: var(--modspotify_pressing_fg) !important;
+}
+
+/* Friend sidebar */
+#view-buddy-list {
+	min-width: 15px !important;
+	width: 15px !important;
+	transition-property: all !important;
+	transition-duration: .5s !important;
+	transition-timing-function: cubic-bezier(.3,0,0,1) !important;
+	opacity: 0;
+}
+
+#view-buddy-list:hover {
+	width: 277px !important;
+	opacity: 1;
+}
+
+.body-container--windows .buddy-list-iframe {
+	height: 100% !important;
+}
+
+.with-buddy-list #view-buddy-list {
+	position: absolute;
+    right: 0px;
+    display: flex;
+    z-index: 999999;
+    height: 100%;
+}
+
+/* Notification bar */
+#content-wrapper #view-message-bar {
+    position: absolute !important;
+    width: 100% !important;
+    top: 31px;
+    background: #a99d10;
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.alert .close {
+	color: white
+}
+
+/* Small cover Big cover mechanism */
+.now-playing.cover-size-transition.active.image-expanded .cover-image {
+    width: 10px !important;
+	height: 10px !important;
+}
+.now-playing.cover-size-transition.active.image-expanded .caption {
+	padding-left: 0px !important;
+}
+#view-now-playing a.image {
+	overflow: visible !important;
+}
+
+#view-now-playing.expanded {
+	width: 200px;
+	height: 200px;
+}
+
+#now-playing-image-large .cover-image {
+	height: 200px !important;
+}
+
+/* Profile arrow in top left */
+.content-top-bar__profile-menu-button .dropdown {
+	position: fixed !important;
+	right: 137px !important;
+    top: 10px !important;
+	-webkit-app-region: no-drag !important;
+}
+.content-top-bar__profile-menu-button .dropdown .button.button-icon-only::before {
+	color: white;
+}
+
+/* Small tooltip */
+#tooltip {
+	box-shadow: 0 0 10px rgba(0,0,0,0.5) !important;
+	border-radius: 5px !important;
+}
+
+.lyrics-lines-container,
+.message-container {
+	color: var(--modspotify_secondary_fg) !important;
+}
+
+/* Home page */
+.GlueCarousel__grid-wrapper::-webkit-scrollbar-thumb {
+	display: none;
+}
+
+.GlueCard__info-wrapper,
+.Card__info-wrapper {
+	margin-bottom: 30px;
+}
+
+.card-horizontal-interior-wrapper .card-info-title {
+	text-align: start !important;
+}
+
+.tl-row.selected:hover .tl-cell {
+	background: var(--modspotify_scrollbar_fg_and_selected_row_bg) !important;
+}
+
+.GlueTableRow--is-selected {
+	background-color: var(--modspotify_scrollbar_fg_and_selected_row_bg) !important;
+}
+
+.tracklist-podcast .tl-progress .row-progress__bar {
+    background-color: var(--modspotify_main_fg);
+}
+
+.Header__background-color{
+	background-color: var(--modspotify_main_bg) !important;
+}
+
+.Header__background{
+	opacity: 0 !important;
+}
+
+.Button--style-green {
+	color: var(--modspotify_main_bg) !important;
+}
+
+/* make album and playlist title and type color white */
+.glue-page-header__title-text,
+.glue-page-header__label,
+.Header__title-text,
+.Header__label {
+	color: white !important;
+}
+
+/*make connect picker stand on top of everything*/
+#connect-picker {
+	z-index: 99999999;
+	background: #282828 !important;
+}
+.ConnectPopup__content {
+	background: #282828 !important;
+}
+.ConnectPopup__device--active{
+	background: #2c2c2c !important;
+	box-shadow: 0px 5px 5px #2c2c2c, 0px -5px 5px #2c2c2c;
+}
+.ConnectDevicePicker__button--with-badge:after {
+	background-color: --modspotify_main_fg !important;
+}
+.ConnectPopup:after {
+	display: none !important;
+}
+
+/* style new header generated by deluxify.js */
+#newHeader {
+	z-index: 9999;
+    height: 30px;
+    position: fixed;
+    background: #181818;
+    width: 300px;
+    top: 0px;
+	left: 0px;
+	/* box-shadow: -85vw 0px 17px 10px rgba(24,24,24,1); */
+}
+
+.content-top-bar {
+	position: fixed;
+    top: -16px;
+	background: #181818;
+	width: 100vw;
+}
+
+.content-top-bar__history-navigation {
+	margin-top: 3px;
+	margin-left: -68px;
+}
+
+.SearchInput__label{
+	width:15vw;
+}
+.content-top-bar__profile-menu-button .dropdown {
+	margin-top: -11.5px !important;
+}
+
+/* new playlist button */
+#new-playlist-button-mount-point {
+	position: fixed;
+	bottom: 388px;
+	border: none;
+	background: black;
+	width: 300px;
+}
+
+.LeftSidebarNewPlaylistButton__button {
+	border: none;
+    height: 36px;
+}
+
+.LeftSidebarNewPlaylistButton__icon {
+	margin-left: 67px;
+}
+
+/* album header non transparent */
+.Header--with-active-sticky-header .Header__sticky { 
+	background: #070707;
+}
+
+
+/* style SPOTIFY PREMIUM text */
+#spotifyText {
+	z-index: 99999999999;
+    position: fixed;
+    top: 10px;
+    left: 50vw;
+    transform: translate(-50%, 0);
+	height: 21px;
+	font-size: 2em;
+	font-family: 'SlasherX';
+	color: var(--dynamic_color);
+	transition: all 1s;
+}
+
+/* FULLSCREEN MODE */
+
+.body-container--fullscreen .view-player .now-playing .cover-image-container,
+.body-container--fullscreen .P2SVideoOverlay__full-screen-button,
+.body-container--fullscreen .P2SVideoOverlay__buttons {
+	display: none;
+}
+
+.body-container--fullscreen .P2SVideoOverlay__title-text,
+.body-container--fullscreen .album-art .album-art__track-title {
+	color: white;
+}
+
+.body-container--fullscreen .album-art .album-art__background {
+	background: transparent;
+}
+
+.body-container--fullscreen #TEMPCoverImage {
+	width: 110vw;
+	bottom: unset !important;
+	transform: translate(0, -25%);
+	filter: blur(50px) brightness(0.3);
+	margin-left: -5vw;
+}
+
+[dir] body.video-full-screen.video-full-screen--hide-ui .view-player {
+	transform: translateY(calc(100% + 4px)) !important;
+	opacity: 1 !important;
+}
+
+[dir] body.video-full-screen.video-full-screen--hide-ui .view-player .player-controls-container .progress-container .progress-bar .inner {
+	/* background: linear-gradient(0deg, var(--dynamic_color) 0%, #FFFFFF00 81%) !important; */
+	background-color: var(--dynamic_color);
+	box-shadow: -2px -4px 60px 22px var(--dynamic_color);
+	/* height: 30px; */
+}
+
+/* custom background */
+
+body {
+	background: url('https://media.discordapp.net/attachments/310799529161129984/417408747812552715/zilesanamin.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.sticky-clone.sticky-top {
+	right: 0px !important;
+	left: 0px !important;
+	background: #181818;
+}
+.sticky-clone.sticky-top table {
+	padding-left: 32px;
+	padding-right: 32px;
+}
+
+.sticky-clone.sticky-top table thead,
+.glue-page-header__sticky.sticky-top,
+.Header--with-active-sticky-header .Header__sticky {
+	background: #181818;
+}
+.glue-page-header__sticky.sticky-top {
+	padding-top: 42px !important;
+}
+
+.current.playing.tracklist-playlist tr[data-playback-active="true"] {
+	background: #0000002b !important;
+}
+.current.playing.tracklist-playlist tr[data-playback-active="true"] td div span,
+.current.playing.tracklist-playlist tr[data-playback-active="true"] td,
+.current.playing.tracklist-playlist tr[data-playback-active="true"] td a {
+	color: rgb(102, 181, 255) !important;
+}
+/* data-playback-active="true" */
+
+.glue-page-header__background-color,
+.header.header-inline.header-album {
+	background: transparent;
+}
+
+:root{
+	--modspotify_main_bg: #181818 !important;
+}
+
+.h-title a {
+	color: white !important;
+}
