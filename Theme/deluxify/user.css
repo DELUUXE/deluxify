@@ -947,9 +947,3 @@ body {
 .h-title a {
 	color: white !important;
 }
-
-/* fix sideways scrolling in tracklists */
-
-#tracklist-container {
-	overflow-x: hidden;
-}
