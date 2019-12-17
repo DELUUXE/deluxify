@@ -95,6 +95,25 @@
 
         let previousURI = '';
 
+        let light = tinycolor('#00adff').lighten(30).toRgbString()
+        let dark = tinycolor('#00adff').darken(10).toRgbString()
+        let normal = tinycolor('#00adff').toRgbString()
+
+        Spicetify.Player.addEventListener('appchange', function (e) {
+            // console.log('appchange', e)
+            if (e.data.container.tagName.toLowerCase() == 'iframe') {
+                e.data.container.contentDocument.documentElement.style.setProperty('--dynamic_color', normal)
+                e.data.container.contentDocument.documentElement.style.setProperty('--dynamic_color-light', light)
+                e.data.container.contentDocument.documentElement.style.setProperty('--dynamic_color-dark', dark)
+                e.data.container.contentDocument.documentElement.style.setProperty('--modspotify_main_fg', light)
+                e.data.container.contentDocument.documentElement.style.setProperty('--modspotify_pressing_fg', normal)
+                e.data.container.contentDocument.documentElement.style.setProperty('--modspotify_indicator_fg_and_button_bg', normal)
+                e.data.container.contentDocument.documentElement.style.setProperty('--modspotify_selected_button', normal)
+                e.data.container.contentDocument.documentElement.style.setProperty('--modspotify_sidebar_indicator_and_hover_button_bg', light)
+                // this.contentDocument.documentElement.style.setProperty('--dynamic_color-background', backgroundColor)
+            }
+        })
+
         setInterval(() => {
             if (!Spicetify.Player.data) { return }
             if (Spicetify.Player.data.track.uri != previousURI) {
@@ -114,15 +133,56 @@
 
                             let HEX = data.color
 
-                            document.getElementsByClassName('progress-bar')[0].getElementsByClassName('inner')[0].style.background = "#00adff"
-                            if (tinycolor(HEX).getBrightness() > 100) {
-                                document.documentElement.style.setProperty('--dynamic_color', tinycolor(HEX).saturate().toString());
-                            } else {
-                                document.documentElement.style.setProperty('--dynamic_color', tinycolor(HEX).lighten(30).saturate().toString())
+                            // document.getElementsByClassName('progress-bar')[0].getElementsByClassName('inner')[0].style.background = "#00adff"
+                            const brightness = tinycolor(HEX).getBrightness()
+                            // console.log('brightness', brightness)
+                            light = tinycolor(HEX).lighten(30).saturate().toRgbString()
+                            dark = tinycolor(HEX).darken(10).saturate().toRgbString()
+                            normal = tinycolor(HEX).saturate().toRgbString()
+                            // const darkenBackground =  brightness * 100 / 300
+                            // const normalizeBrightness = (brightness - 0) / (300 - 0)
+                            // console.log(normalizeBrightness)
+                            // let backgroundColor = tinycolor(HEX).darken(normalizeBrightness > 75 ? normalizeBrightness : normalizeBrightness / (100 - normalizeBrightness)).saturate().toRgbString()
+                            // let backgroundColor = tinycolor(HEX).setAlpha((1 - normalizeBrightness)).saturate(50).toRgbString()
+                            // let backgroundColor = tinycolor(HEX).setAlpha(0.2).saturate(40).toRgbString()
+
+                            if (brightness < 50) {
+                                light = tinycolor(HEX).lighten(60).saturate(40).toRgbString()
+                                dark = tinycolor(HEX).lighten(10).saturate(20).toRgbString()
+                            }
+                            if (brightness < 25) {
+                                light = tinycolor(HEX).lighten(70).saturate(50).toRgbString()
+                                dark = tinycolor(HEX).lighten(30).saturate(30).toRgbString()
+                            }
+                            if (brightness < 100) {
+                                normal = tinycolor(HEX).lighten(30).saturate().toRgbString()
                             }
 
+                            document.documentElement.style.setProperty('--dynamic_color', normal)
+                            document.documentElement.style.setProperty('--dynamic_color-light', light)
+                            document.documentElement.style.setProperty('--dynamic_color-dark', dark)
+                            document.documentElement.style.setProperty('--modspotify_main_fg', light)
+                            document.documentElement.style.setProperty('--modspotify_pressing_fg', normal)
+                            document.documentElement.style.setProperty('--modspotify_indicator_fg_and_button_bg', normal)
+                            document.documentElement.style.setProperty('--modspotify_selected_button', normal)
+                            document.documentElement.style.setProperty('--modspotify_sidebar_indicator_and_hover_button_bg', light)
+                            // document.documentElement.style.setProperty('--dynamic_color-background', backgroundColor)
+
+                            $("iframe").each(function () {
+                                this.contentDocument.documentElement.style.setProperty('--dynamic_color', normal)
+                                this.contentDocument.documentElement.style.setProperty('--dynamic_color-light', light)
+                                this.contentDocument.documentElement.style.setProperty('--dynamic_color-dark', dark)
+                                this.contentDocument.documentElement.style.setProperty('--modspotify_main_fg', light)
+                                this.contentDocument.documentElement.style.setProperty('--modspotify_pressing_fg', normal)
+                                this.contentDocument.documentElement.style.setProperty('--modspotify_indicator_fg_and_button_bg', normal)
+                                this.contentDocument.documentElement.style.setProperty('--modspotify_selected_button', normal)
+                                this.contentDocument.documentElement.style.setProperty('--modspotify_sidebar_indicator_and_hover_button_bg', light)
+                                // this.contentDocument.documentElement.style.setProperty('--dynamic_color-background', backgroundColor)
+                            })
+
                             document.getElementsByClassName('player-bar-wrapper')[0].style.background = HEX + "55"
-                            document.getElementsByClassName('progress-bar')[0].style.background = HEX
+                            document.getElementsByClassName('progress-bar')[0].style.background = tinycolor(HEX).darken(30).saturate().toString()
+                            // document.getElementsByClassName('progress-bar')[0].getElementsByClassName('inner')[0].style.background = tinycolor(HEX).lighten().saturate().toString()
                         });
                     };
                     CTelem.onerror = function () {
