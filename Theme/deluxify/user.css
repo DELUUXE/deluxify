@@ -208,6 +208,12 @@ Also padding tilte and artist to correct position
 	z-index: 9998 !important;
 }
 
+.view-player .track a {
+	color: var(--dynamic_color-light);
+	transition-duration: 1000ms !important;
+	transition-property: color !important;
+}
+
 /*move offline bar up*/
 
 #view-offline-indicator {
@@ -401,9 +407,22 @@ Move progress bar
 	top: 100% !important;
 	margin-top: -4px !important;
 	border-radius: 0px !important;
-	background-color: var(--modspotify_main_fg);
-	/* transition-duration: 1000ms !important; */
+	background-color: var(--dynamic_color-light);
+	transition-duration: 1000ms !important;
+	transition-property: background !important;
 	/* mix-blend-mode: color-burn; */
+}
+
+.view-player .player-controls-container .progress-container .progress-bar .inner .handle {
+	background-color: var(--dynamic_color-light);
+	border-color: var(--dynamic_color);
+	transition-duration: 1000ms !important;
+	transition-property: background !important;
+}
+
+.view-player .player-controls-container .progress-container.progress-bar-enabled.dragging-progress-bar .progress-bar .inner, .view-player .player-controls-container .progress-container.progress-bar-enabled:hover .progress-bar .inner {
+	background-color: var(--dynamic_color) !important;
+	transition-duration: 0ms !important;
 }
 
 /* Add round corner for Gerne and Mood cards */
@@ -471,8 +490,6 @@ form, so I move last cover to the right 20px and first one to the left 20px
 .grid-overlay-label {
 	top: 140px !important;
 }
-
-/**/
 
 .glue-page-header__background-color {
 	background-image: none !important;
@@ -863,6 +880,8 @@ and add little glowing effect
 	transition: all 1s;
 }
 
+/*  */
+
 /* FULLSCREEN MODE */
 
 .body-container--fullscreen .view-player .now-playing .cover-image-container, .body-container--fullscreen .P2SVideoOverlay__full-screen-button, .body-container--fullscreen .P2SVideoOverlay__buttons {
@@ -900,7 +919,7 @@ and add little glowing effect
 /* custom background */
 
 body {
-	background: url('https://media.discordapp.net/attachments/310799529161129984/417408747812552715/zilesanamin.jpg');
+	background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url('https://media.discordapp.net/attachments/310799529161129984/417408747812552715/zilesanamin.jpg');
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -930,9 +949,9 @@ body {
 	background: #0000002b !important;
 }
 
-.current.playing.tracklist-playlist tr[data-playback-active="true"] td div span, .current.playing.tracklist-playlist tr[data-playback-active="true"] td, .current.playing.tracklist-playlist tr[data-playback-active="true"] td a {
+/* .current.playing.tracklist-playlist tr[data-playback-active="true"] td div span, .current.playing.tracklist-playlist tr[data-playback-active="true"] td, .current.playing.tracklist-playlist tr[data-playback-active="true"] td a {
 	color: rgb(102, 181, 255) !important;
-}
+} */
 
 /* data-playback-active="true" */
 
@@ -946,4 +965,18 @@ body {
 
 .h-title a {
 	color: white !important;
+}
+
+/* dynamic colors */
+
+.tl-row.current .tl-cell:not(.tl-number), .tl-row.current .tl-cell a:link, .tl-row.current .tl-highlight {
+	color: var(--dynamic_color-light) !important;
+}
+
+.current.playing.tracklist-playlist tr[data-playback-active="true"] td div span, .current.playing.tracklist-playlist tr[data-playback-active="true"] td, .current.playing.tracklist-playlist tr[data-playback-active="true"] td a {
+	color: var(--dynamic_color-light) !important;
+}
+
+.section-divider > * {
+	color: var(--dynamic_color-light) !important;
 }
