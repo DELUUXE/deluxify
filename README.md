@@ -35,13 +35,17 @@ edit [line 903](https://github.com/DELUUXE/deluxify/blob/master/Theme/deluxify/u
 
 ![playlist view](/screenshots/deluxify-screenshot-playlist.png?raw=true)
 
+### playlist view (dynamic color example)
+
+![playlist view dynamic color](/screenshots/deluxify-screenshot-playlist-dyncolor.gif?raw=true)
+
 ### artist view
 
 ![artist view](/screenshots/deluxify-screenshot-artist.png?raw=true)
 
 ### fullscreen view
 
-![fullscreen view](/screenshots/deluxify-screenshot-fullscreen.png?raw=true)
+![fullscreen view](/screenshots/deluxify-screenshot-fullscreen.gif?raw=true)
 
 ### fullscreen view (when hovering with mouse)
 
