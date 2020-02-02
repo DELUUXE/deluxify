@@ -92,7 +92,8 @@ body.remotebar .view-player .player-bar-wrapper {
 	transition-property: transform box-shadow !important;
 	transition-duration: 1s !important;
 	transition-timing-function: cubic-bezier(.3, 0, 0, 1) !important;
-	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+	/* box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); */
+	box-shadow: none !important;
 }
 
 .card-image-hit-area:not(.no-hover):hover .card-image-content-wrapper, .GlueCard__image-hit-area-counter-scale:hover .GlueCard__image-wrapper, .Card:not(.Card--artist) .Card__image-hit-area-counter-scale:hover .Card__image-wrapper {
@@ -210,7 +211,7 @@ Also padding tilte and artist to correct position
 
 .view-player .track a {
 	color: var(--dynamic_color-light);
-	transition-duration: 1000ms !important;
+	transition-duration: 3000ms !important;
 	transition-property: color !important;
 }
 
@@ -877,7 +878,7 @@ and add little glowing effect
 	font-size: 2em;
 	font-family: 'SlasherX';
 	color: var(--dynamic_color);
-	transition: all 1s;
+	transition: all 3s;
 }
 
 /*  */
@@ -919,11 +920,15 @@ and add little glowing effect
 /* custom background */
 
 body {
-	background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url('https://media.discordapp.net/attachments/310799529161129984/417408747812552715/zilesanamin.jpg');
+	/* background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url('https://media.discordapp.net/attachments/310799529161129984/417408747812552715/zilesanamin.jpg');
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: cover; */
+	background: linear-gradient(180deg, #181818 16%, transparent 330%) fixed no-repeat;
+	background-color: var(--dynamic_color);
+	transition-property: background-color, color, background;
+	transition-duration: 3s;
 }
 
 .sticky-clone.sticky-top {
@@ -971,12 +976,28 @@ body {
 
 .tl-row.current .tl-cell:not(.tl-number), .tl-row.current .tl-cell a:link, .tl-row.current .tl-highlight {
 	color: var(--dynamic_color-light) !important;
+	transition-property: color !important;
+	transition-duration: 3s;
 }
 
 .current.playing.tracklist-playlist tr[data-playback-active="true"] td div span, .current.playing.tracklist-playlist tr[data-playback-active="true"] td, .current.playing.tracklist-playlist tr[data-playback-active="true"] td a {
 	color: var(--dynamic_color-light) !important;
+	transition-property: color;
+	transition-duration: 3s;
 }
 
-.section-divider > * {
+.section-divider>* {
 	color: var(--dynamic_color-light) !important;
+	transition-property: color;
+	transition-duration: 3s;
+}
+
+button {
+	transition-property: color, background, background-color !important;
+	transition-duration: 1s !important;
+}
+
+.SidebarListItemLink--is-highlighted, .SidebarListItemLink--is-highlighted:link, .RootlistItem--is-active:before, a {
+	transition-property: color, background, background-color !important;
+	transition-duration: 1s !important;
 }
