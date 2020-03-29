@@ -13,8 +13,8 @@
 }
 
 :root {
-	--modspotify_main_bg: #070707 !important;
-	--modspotify_sidebar_and_player_bg: #070707 !important;
+	--modspotify_main_bg: #181818 !important;
+	--modspotify_sidebar_and_player_bg: #181818 !important;
 	--cover-border-radius: 8px;
 	--section-border-radius: 8px;
 	/* --modspotify_sidebar_indicator_and_hover_button_bg: #00adff; */
