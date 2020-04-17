@@ -128,7 +128,7 @@
                     CTelem.style.bottom = "-1000000px"
 
                     CTelem.onload = function () {
-                        console.log("image loaded!")
+                        // console.log("image loaded!")
                         $.getJSON(`https://deluxify-api.24-7music.com/?imageURI=${Spicetify.Player.data.track.metadata.image_url}&&auth=deluxifyapiaccess`, function (data) {
 
                             let HEX = data.color
