@@ -1,6 +1,9 @@
 # deluxify
 a spicetify-cli theme: https://github.com/khanhas/spicetify-cli
 
+## This readme is currently outdated
+I will update it with new screenshots at a later date (since v3 release)
+
 ## features
 
 - dynamic colors depending on cover art (sends json request with every song change)
