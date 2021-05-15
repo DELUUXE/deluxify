@@ -66,6 +66,7 @@
             spotifyPlaceholder.id = "spotifyText"
             spotifyPlaceholder.innerText = "spotify".toUpperCase()
             spotifyPlaceholder.style.color = '#1DB954';
+            spotifyPlaceholder.classList.add('non-premium')
             spotifyPlaceholder.style.opacity = 1;
             document.body.appendChild(spotifyPlaceholder)
 
@@ -82,7 +83,7 @@
                     }, 2000);
                     setTimeout(() => {
                         setTimeout(() => {
-                            if (!document.getElementById('leaderboard-ad-wrapper')) {
+                            if (!document.getElementById('video-fullscreen-button')) {
                                 newText = 'SPOTIFY PREMIUM'
                             }
                             spotifyText.innerText = newText
@@ -94,25 +95,6 @@
         }
 
         let previousURI = '';
-
-        let light = tinycolor('#00adff').lighten(30).toRgbString()
-        let dark = tinycolor('#00adff').darken(10).toRgbString()
-        let normal = tinycolor('#00adff').toRgbString()
-
-        Spicetify.Player.addEventListener('appchange', function (e) {
-            // console.log('appchange', e)
-            if (e.data.container.tagName.toLowerCase() == 'iframe') {
-                e.data.container.contentDocument.documentElement.style.setProperty('--dynamic_color', normal)
-                e.data.container.contentDocument.documentElement.style.setProperty('--dynamic_color-light', light)
-                e.data.container.contentDocument.documentElement.style.setProperty('--dynamic_color-dark', dark)
-                e.data.container.contentDocument.documentElement.style.setProperty('--modspotify_main_fg', light)
-                e.data.container.contentDocument.documentElement.style.setProperty('--modspotify_pressing_fg', normal)
-                e.data.container.contentDocument.documentElement.style.setProperty('--modspotify_indicator_fg_and_button_bg', normal)
-                e.data.container.contentDocument.documentElement.style.setProperty('--modspotify_selected_button', normal)
-                e.data.container.contentDocument.documentElement.style.setProperty('--modspotify_sidebar_indicator_and_hover_button_bg', light)
-                // this.contentDocument.documentElement.style.setProperty('--dynamic_color-background', backgroundColor)
-            }
-        })
 
         setInterval(() => {
             if (!Spicetify.Player.data) { return }
@@ -159,36 +141,37 @@
                             }
 
                             document.documentElement.style.setProperty('--dynamic_color', normal)
+                            document.documentElement.style.setProperty('--modspotify_rgb_main_fg', normal.replace('rgb(', '').replace(')', ''))
                             document.documentElement.style.setProperty('--dynamic_color-light', light)
                             document.documentElement.style.setProperty('--dynamic_color-dark', dark)
+                            document.documentElement.style.setProperty('--dynamic_color-dark_RGB', dark.replace('rgb(', '').replace(')', ''))
                             document.documentElement.style.setProperty('--modspotify_main_fg', light)
                             document.documentElement.style.setProperty('--modspotify_pressing_fg', normal)
-                            document.documentElement.style.setProperty('--modspotify_indicator_fg_and_button_bg', normal)
+                            document.documentElement.style.setProperty('--modspotify_indicator_fg_and_button_bg', dark)
                             document.documentElement.style.setProperty('--modspotify_selected_button', normal)
                             document.documentElement.style.setProperty('--modspotify_sidebar_indicator_and_hover_button_bg', light)
+
+                            // calculate tracklist waveform hue rotation
+                            const originalHSV = tinycolor('#1DB954').toHsv()
+                            const newHSV = tinycolor(light).toHsv()
+                            const waveFormHueRotation = newHSV.h - originalHSV.h
+                            const waveFormSaturation = newHSV.s - originalHSV.s
+                            const waveFormBrightness = newHSV.v - originalHSV.v
+                            document.documentElement.style.setProperty('--waveform-hue-rotation', `${Math.round(waveFormHueRotation)}deg`)
+                            document.documentElement.style.setProperty('--waveform-saturation', Math.max(0, Math.min(originalHSV.s + waveFormSaturation + 0.1, 1)))
+                            document.documentElement.style.setProperty('--waveform-brightness', Math.max(0, Math.min(originalHSV.v + waveFormBrightness + 0.2, 1)))
                             // document.documentElement.style.setProperty('--dynamic_color-background', backgroundColor)
 
-                            $("iframe").each(function () {
-                                this.contentDocument.documentElement.style.setProperty('--dynamic_color', normal)
-                                this.contentDocument.documentElement.style.setProperty('--dynamic_color-light', light)
-                                this.contentDocument.documentElement.style.setProperty('--dynamic_color-dark', dark)
-                                this.contentDocument.documentElement.style.setProperty('--modspotify_main_fg', light)
-                                this.contentDocument.documentElement.style.setProperty('--modspotify_pressing_fg', normal)
-                                this.contentDocument.documentElement.style.setProperty('--modspotify_indicator_fg_and_button_bg', normal)
-                                this.contentDocument.documentElement.style.setProperty('--modspotify_selected_button', normal)
-                                this.contentDocument.documentElement.style.setProperty('--modspotify_sidebar_indicator_and_hover_button_bg', light)
-                                // this.contentDocument.documentElement.style.setProperty('--dynamic_color-background', backgroundColor)
-                            })
+                            document.getElementsByClassName('progress-bar__fg_wrapper')[0].style.background = HEX + "55"
+                            document.getElementsByClassName('progress-bar__fg')[0].style.background = normal
 
-                            document.getElementsByClassName('player-bar-wrapper')[0].style.background = HEX + "55"
-                            document.getElementsByClassName('progress-bar')[0].style.background = tinycolor(HEX).darken(30).saturate().toString()
                             // document.getElementsByClassName('progress-bar')[0].getElementsByClassName('inner')[0].style.background = tinycolor(HEX).lighten().saturate().toString()
                         });
                     };
                     CTelem.onerror = function () {
-                        console.log("image failed!")
-                        document.getElementsByClassName('player-bar-wrapper')[0].style.background = "10101055"
-                        document.getElementsByClassName('progress-bar')[0].style.background = "101010"
+                        // console.log("image failed!")
+                        document.getElementsByClassName('progress-bar__fg')[0].style.background = "10101055"
+                        document.getElementsByClassName('progress-bar__fg_wrapper')[0].style.background = "101010"
                     };
 
                     CTelem.src = Spicetify.Player.data.track.metadata.image_xlarge_url
